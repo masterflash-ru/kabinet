@@ -5,7 +5,7 @@ namespace Mf\Kabinet\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Authentication\Result;
-use Mf\Users\Form\LoginForm;
+use Mf\Kabinet\Form\LoginForm;
 
 /**
  * контроллер выводящий форму авторизации и собственно сама авторизация при помощи сервиса

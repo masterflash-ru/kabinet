@@ -1,5 +1,5 @@
 <?php
-namespace Mf\Users\Form;
+namespace Mf\Kabinet\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Fieldset;

@@ -4,7 +4,7 @@ namespace Mf\Kabinet\Controller\Factory;
 use Interop\Container\ContainerInterface;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Mf\Permissions\Service\AuthManager;
+use Mf\Users\Service\AuthManager;
 use Zend\Validator\Translator\TranslatorInterface;
 
 /**
