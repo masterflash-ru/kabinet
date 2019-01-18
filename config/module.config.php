@@ -82,7 +82,7 @@ return [
                     ],
 
                     'defaults' => [
-                        'controller' => Controller\ResetPasswordController::class,
+                        'controller' => Controller\ConfirmController::class,
                         'action'     => 'index',
                     ],
                 ],
@@ -122,6 +122,7 @@ return [
             Controller\UserController::class => Controller\Factory\UserControllerFactory::class,
             Controller\ResetPasswordController::class => Controller\Factory\ResetPasswordControllerFactory::class,
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
+            Controller\ConfirmController::class => Controller\Factory\ConfirmControllerFactory::class,
         ],
     ],
     'view_manager' => [

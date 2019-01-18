@@ -3,10 +3,7 @@ namespace Mf\Kabinet\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-//use Zend\Mvc\MvcEvent;
 
-/**
- */
 class IndexController extends AbstractActionController 
 {
     
@@ -42,8 +39,7 @@ class IndexController extends AbstractActionController
     public function profileAction() 
     {
 
-        return new ViewModel([
-        ]);
+        return new ViewModel();
     } 
 
 
