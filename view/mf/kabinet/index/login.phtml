@@ -1,0 +1,16 @@
+<?php
+$this->headTitle('Вход/Регистрация');
+?>
+<div id="kabinetabs">
+    <ul>
+        <li><a href="<?=$this->url('login')?>">Вход</a> </li>
+        <li><a href="<?=$this->url('registration')?>">Регистрация</a></li>
+        <li><a href="<?=$this->url('reset-password')?>">Вспомнить пароль</a></li>
+    </ul>
+    
+    
+    </div>
+
+<?php $this->inlineScript()->captureStart(); ?>
+$("#kabinetabs").tabs();
+<?php $this->inlineScript()->captureEnd(); ?>

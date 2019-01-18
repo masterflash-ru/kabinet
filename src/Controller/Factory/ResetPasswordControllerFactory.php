@@ -7,11 +7,7 @@ use Mf\Users\Service\UserManager;
 
 use Zend\Validator\Translator\TranslatorInterface;
 
-/**
- * This is the factory for UserController. Its purpose is to instantiate the
- * controller and inject dependencies into it.
- */
-class UserControllerFactory implements FactoryInterface
+class ResetPasswordControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
@@ -19,6 +15,6 @@ class UserControllerFactory implements FactoryInterface
         $userManager = $container->get(UserManager::class);
         $translator = $container->get(TranslatorInterface::class);
 
-        return new $requestedName( $userManager,$config,$translator);
+        return new $requestedName($userManager,$config,$translator);
     }
 }

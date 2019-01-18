@@ -13,7 +13,7 @@ use Zend\Validator\AbstractValidator;
 /**
  * контроллер выводящий форму аутентификация и собственно сама аутентификация при помощи сервиса
  */
-class AuthController extends AbstractActionController
+class RegistrationController extends AbstractActionController
 {
     
     /**
@@ -48,7 +48,7 @@ class AuthController extends AbstractActionController
     /**
      * вывод формы авторизации и обработка информации из нее (POST)
      */
-    public function loginAction()
+    public function indexAction()
     {
         $locale=$this->params('locale',$this->locale_default);
         $this->translator->setLocale(Locale::getPrimaryLanguage($locale));
@@ -76,7 +76,7 @@ class AuthController extends AbstractActionController
 
         //форма авторизации
         $factory = new Factory();
-        $form    = $factory->createForm(include $this->config["forma_login"]);
+        $form    = $factory->createForm(include $this->config["forma_registration"]);
 
         
         if ($prg === false){
