@@ -1,9 +1,14 @@
-<div id="myReg">
+<div id="myreg">
 <?php
 $form = $this->form;
 $form->prepare();
 $form->setAttribute('id', 'formreg');
 $form->setAttribute('action', $this->url('registration'));
+/*переопределим формат ошибок*/
+$helper = $this->formElementErrors();
+$helper->setMessageOpenFormat('<div class="alert alert-danger" role="alert">');
+$helper->setMessageSeparatorString('<br/>');
+$helper->setMessageCloseString('</div>');
 if ($this->alertMessage){
 ?>
 <div class="alert alert-<?=$this->alert_type?>" role="alert"><?=$this->alertMessage;?></div>
@@ -48,6 +53,18 @@ if ($this->alertMessage){
         $name = $form->get('password');
         echo $this->formElement($name);
         echo $this->formElementErrors($name);
+        ?>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Согласен на обработку моих персональных данных</label>
+    <div class="col-sm-10">
+        <?php
+        $name = $form->get('yes');
+        echo $this->formElement($name);
+        if ($this->formElementErrors($name)){
+            echo '<div class="alert alert-danger" role="alert">Вы не дали согласие на обработку</div>';
+        }
         ?>
     </div>
   </div>

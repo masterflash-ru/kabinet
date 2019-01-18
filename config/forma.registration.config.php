@@ -48,6 +48,15 @@ return [
                 ]
             ],
         ],
+        [
+            'spec' => [
+                'type' => Element\Checkbox::class,
+                'name' => 'yes',
+                'options' => [
+                    'label' => 'Согласен на обработку моих данных',
+                ]
+            ],
+        ],
 
         [
             'spec' => [
@@ -98,6 +107,18 @@ return [
                 [ 'name' => 'StringTrim' ],
                 [ 'name' => 'StripTags' ],
             ],
+        ],
+        "yes" => [
+            'required' => true,
+            'validators' => [
+                [
+                    'name' => 'InArray',
+                    'options' => [
+                        'haystack' => [1],
+                    ],
+                ],
+            ],
+
         ],
         "name" => [
             'required' => true,

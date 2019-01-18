@@ -4,6 +4,12 @@ $form = $this->form;
 $form->prepare();
 $form->setAttribute('id', 'formlogin');
 $form->setAttribute('action', $this->url('login'));
+/*переопределим формат ошибок*/
+$helper = $this->formElementErrors();
+$helper->setMessageOpenFormat('<div class="alert alert-danger" role="alert">');
+$helper->setMessageSeparatorString('<br/>');
+$helper->setMessageCloseString('</div>');
+
 if ($this->alertMessage){
 ?>
 <div class="alert alert-<?=$this->alert_type?>" role="alert"><?=$this->alertMessage;?></div>

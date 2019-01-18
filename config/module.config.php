@@ -72,7 +72,23 @@ return [
                         'action'     => 'index',
                     ],
                 ],
-            ],/* 
+            ],
+           'confirm' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route'    => '/kabinet/confirm/:confirm',
+                    'constraints' => [
+                        'confirm' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+
+                    'defaults' => [
+                        'controller' => Controller\ResetPasswordController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            
+            /* 
             'set-password' => [
                 'type' => Literal::class,
                 'options' => [
@@ -125,11 +141,16 @@ return [
     /*дополнение новым статусом статичные страницы*/
     "statpage"=>[
         'status'=>[
-            1=>"Регистрация не подтверждена",
             3=>"Различные оповещения и письма посетителям"
         ],
     ],
-  
+    "users" => [
+        /*список допустимых состояний регистрированных юзеров, ключ - это код состояния*/
+        'users_status' => [
+            1=>"Регистрация не подтверждена",
+        ],
+    ],
+
 //локали сайта - перезаписываются в глобальном конфиге
   "locale_default"=>"ru_RU",
   "locale_enable_list"=>["ru_RU"],

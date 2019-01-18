@@ -4,10 +4,14 @@ namespace Mf\Kabinet\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Authentication\Result;
 use Locale;
+use Zend\Mail;
+use Zend\Mime\Message as MimeMessage;
+use Zend\Mime\Mime;
+use Zend\Mime\Part as MimePart;
 use Zend\Form\Factory;
 use Exception;
+use Mf\Users\Exception as UsersException;
 use Zend\Validator\AbstractValidator;
 
 /**
@@ -16,26 +20,22 @@ use Zend\Validator\AbstractValidator;
 class RegistrationController extends AbstractActionController
 {
     
-    /**
-    * менеджер авторизации
-     */
-    protected $authManager;
+    protected $userManager;
     
     protected $translator;
     
-    /**
-    * config - модуля (секция kabinet)
-    */
     protected $config;
     protected $locale_default;
     protected $email_robot;
     protected $admin_emails=[];
+    protected $ServerDefaultUri;
 
 
-    public function __construct($authManager,$config,$translator)
+    public function __construct($userManager,$config,$translator)
     {
-        $this->authManager = $authManager;
+        $this->userManager = $userManager;
         $this->config=$config["kabinet"];
+        $this->ServerDefaultUri=$config["ServerDefaultUri"];
         $translator->setLocale("ru");       //ставим ru, пока нет поддержки мультиязычности
         $this->translator=$translator;
         AbstractValidator::setDefaultTranslator($translator);
@@ -46,7 +46,7 @@ class RegistrationController extends AbstractActionController
     }
     
     /**
-     * вывод формы авторизации и обработка информации из нее (POST)
+     * вывод формы  обработка информации из нее (POST)
      */
     public function indexAction()
     {
@@ -58,9 +58,9 @@ class RegistrationController extends AbstractActionController
         */
         if ($this->user()->identity()){
             //да, переходим на страницу после авторизации, из конфига
-            //$this->redirect()->toRoute("kabinet");
+            
         }
-        
+
         $prg = $this->prg();
         if ($prg instanceof Response) {
             //сюда попадаем когда форма отправлена, производим редирект
@@ -89,14 +89,45 @@ class RegistrationController extends AbstractActionController
         //данные валидные?
         if($form->isValid()) {
             $data = $form->getData();
-            $result = $this->authManager->login($data['login'], $data['password'], $data['remember_me']);
+             try  {
+                 /*сама регистрация*/
+                 $user=$this->userManager->addUser($data);
 
-            //авторизовался нормально?
-            if ($result->getCode() != Result::SUCCESS) {
-                $alertMessage="Неверный логин/пароль";
-                $alert_type="danger";
-                $view->setVariable("lost_password",1);
-            }                
+                $alertMessage="Вам на E-mail отправлено письмо с инструкциями";
+
+                /*текст письма юзеру*/
+                $mess=$this->Statpage("USER_REGISTRATION",["pageType"=>3,"errMode"=>"exception"]);
+                
+                /*адрес для подтверждения регистрации*/
+                $confirm = $this->ServerDefaultUri.$this->url()->fromRoute("confirm",["confirm"=>$user->getConfirm_hash()]);
+                $mess=str_replace("{CONFIRM}",$confirm,$mess);
+                
+
+                $text           = new MimePart($mess);
+                $text->type     = Mime::TYPE_HTML;
+                $text->charset  = 'utf-8';
+                $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+                $body = new MimeMessage();
+                $body->setParts([ $text]);
+                
+                $mail = new Mail\Message();
+                $mail->setEncoding("UTF-8");
+                $mail->setBody($body);
+                $mail->setFrom($this->email_robot);
+                $mail->addTo($data['login']);
+                $mail->setSubject('Registration');
+                $transport = new Mail\Transport\Sendmail();
+                $transport->send($mail);
+                $form->setData(array_fill_keys(array_keys($data),""));
+
+             } catch (UsersException\AlreadyExistException $e){
+                  $alertMessage="Вы уже зарегистрированы";
+                  $alert_type="danger";
+               } catch (Exception $e) {
+                  $alertMessage="Что-то пошло не так: ".$e->getMessage();
+                  $alert_type="danger";
+              }
+
         } else {
             $alertMessage="Ошибка";
             $alert_type="danger";
@@ -106,13 +137,4 @@ class RegistrationController extends AbstractActionController
         return $view;
     }
     
-    /**
-     * The "logout" action performs logout operation.
-     */
-    public function logoutAction() 
-    {        
-        $this->authManager->logout();
-        
-        return $this->redirect()->toRoute('login');
-    }
 }
