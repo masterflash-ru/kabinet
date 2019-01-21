@@ -71,6 +71,6 @@ if (<?=(int)$this->user()->getUserId()?>>0){
 $("#lostpassword").on("click",function(e){
     $("#kabinetabs").tabs( "option", "active", 2 );
 });
-
+$('[type=password]').hidePassword(true);
 </script>
 

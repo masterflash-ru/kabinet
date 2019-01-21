@@ -134,10 +134,13 @@ return [
         "routeNameAfterLogin"=>"kabinet",   //имя маршрута куда переходим после авторизации
         
         /*конфигурация форм*/
-        "forma_login"=>__DIR__."/forma.login.config.php",
-        "forma_profile"=>__DIR__."/forma.profile.config.php",
+        "forma_login"=>__DIR__."/forma.login.config.php",      
         "forma_reset"=>__DIR__."/forma.reset.config.php",
         "forma_registration"=>__DIR__."/forma.registration.config.php",
+        /*раздел регистрированного посетителя*/
+        "forma_profile_password"=>__DIR__."/forma.profile_password.config.php",
+        "forma_profile"=>__DIR__."/forma.profile.config.php",
+        
     ],
     /*дополнение новым статусом статичные страницы*/
     "statpage"=>[
