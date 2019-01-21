@@ -132,14 +132,15 @@ class UserController extends AbstractActionController
           //вывод страницы и формы
             //заполним форму данными из базы
             try{
+                /*прочитаем профиль, просто проверим на ошибку и не более*/
                 $user_profile=$this->userManager->GetUserIdInfo($this->user()->getUserId())->toArray();
-                $form->setData($user_profile);
             } catch (Exception $e){
                 $alertMessage="Ошибка чтения".$this->user()->getUserId();
                 $alert_type="danger";
             }
             
           $view->setVariables(["form"=>$form,"alertMessage"=>$alertMessage,"alert_type"=>$alert_type]);
+          
           return $view;
         }
 
@@ -147,8 +148,9 @@ class UserController extends AbstractActionController
         //данные валидные?
         if($form->isValid()) {
             try{
-            $this->userManager->updateUserInfo ($this->user()->getUserId(),$form->getData());
-            $alertMessage="Информация успешно обновлена";
+                $this->userManager->updateUserInfo ($this->user()->getUserId(),$form->getData());
+                $alertMessage="Информация успешно обновлена";
+                
             } catch (Exception $e){
                 $alertMessage="Ошибка чтения";
                 $alert_type="danger";
@@ -157,7 +159,7 @@ class UserController extends AbstractActionController
             $alertMessage="Ошибка обновления информации";
             $alert_type="danger";
         }
-    
+
         $view->setVariables(["form"=>$form,"alertMessage"=>$alertMessage,"alert_type"=>$alert_type]);
         return $view;
     }

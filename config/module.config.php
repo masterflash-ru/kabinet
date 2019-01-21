@@ -140,7 +140,6 @@ return [
         /*раздел регистрированного посетителя*/
         "forma_profile_password"=>__DIR__."/forma.profile_password.config.php",
         "forma_profile"=>__DIR__."/forma.profile.config.php",
-        
     ],
     /*дополнение новым статусом статичные страницы*/
     "statpage"=>[
