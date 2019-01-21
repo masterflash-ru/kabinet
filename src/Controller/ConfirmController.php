@@ -14,10 +14,6 @@ class ConfirmController extends AbstractActionController
     
     protected $userManager;
     
-    protected $locale_default;
-
-
-
     public function __construct($userManager)
     {
         $this->userManager = $userManager;
@@ -28,6 +24,18 @@ class ConfirmController extends AbstractActionController
      */
     public function indexAction()
     {
+        
+        try{
+            $confirm=$this->params('confirm',"");
+            $this->userManager->userConfirm($confirm);
+
+        } catch (Exception $e){
+            /*любая ошибка - 404*/
+            $this->getResponse()->setStatusCode(404);
+        }
+        
+        
+        
     }
     
 }

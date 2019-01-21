@@ -10,6 +10,7 @@ $this->headTitle('Кабинет пользователя');
     
     </div>
 
-<script>
-    $("#kabinetabs").tabs();
-</script>
+<?php $this->inlineScript()->captureStart(); ?>
+$("#kabinetabs").tabs();
+<?php $this->inlineScript()->captureEnd(); ?>
+
