@@ -47,10 +47,21 @@ return [
         ],
         [
             'spec' => [
+                'name' => 'logout',
+                'type' => Element\Button::class,
+                'attributes' => [
+                    'value' => 'Выйти',
+                    'class'=>"btn btn-warning",
+                ],
+            ],
+        ],
+        [
+            'spec' => [
                 'name' => 'submit',
                 'type' => Element\Submit::class,
                 'attributes' => [
                     'value' => 'Сохранить',
+                    'class'=>"btn btn-primary",
                 ],
             ],
         ],
@@ -58,9 +69,6 @@ return [
             'spec' => [
                 'type' => Element\Csrf::class,
                 'name' => 'security',
-                'attributes'=>[
-                    'class'=>"btn btn-primary",
-                ]
             ],
         ],
 

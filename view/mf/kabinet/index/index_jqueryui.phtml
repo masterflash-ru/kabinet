@@ -1,0 +1,21 @@
+<?php
+$this->headTitle('Кабинет пользователя');
+?>
+<div id="kabinetabs">
+    <ul>
+<?php
+  foreach ($this->config as $tab){
+      if (!isset($tab["route"]["options"]) || !is_array($tab["route"]["options"])){
+          $tab["route"]["options"]=[];
+      }
+?>
+    <li><a href="<?=$this->url($tab["route"]["name"],$tab["route"]["options"])?>"><?=$tab["name"]?></a> </li>
+<?php
+  }
+?>
+</ul>
+    </div>
+<?php $this->inlineScript()->captureStart(); ?>
+$("#kabinetabs").tabs();
+<?php $this->inlineScript()->captureEnd(); ?>
+

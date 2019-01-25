@@ -50,13 +50,17 @@ if ($this->alertMessage){
 
   <div class="form-group row">
     <div class="col-sm-10">
-              <?=$this->formInput($form->get('submit')); ?>
+        <?=$this->formInput($form->get('logout')); ?>
+        <?=$this->formInput($form->get('submit')); ?>
     </div>
   </div>
 <?= $this->formElement($form->get('security')) ?>
 <?= $this->form()->closeTag() ?>
 </div>
 <script type="text/javascript">
+$("input[name=logout]").on("click",function(e){
+document.location.href="<?=$this->url("logout")?>";
+});
 $("#formprofile").on("submit",function(e){
     e.preventDefault();
 $(this).ajaxSubmit({

@@ -45,6 +45,7 @@ return [
                 'type' => Element\Submit::class,
                 'attributes' => [
                     'value' => 'Отправить',
+                    'class'=>"btn btn-primary",
                 ],
             ],
         ],

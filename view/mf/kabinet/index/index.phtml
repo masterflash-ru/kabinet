@@ -1,17 +1,34 @@
 <?php
 $this->headTitle('Кабинет пользователя');
 ?>
-<div id="kabinetabs">
-    <ul>
-        <li><a href="<?=$this->url('kabinet_data',["action"=>"profile"])?>">Мой профиль</a> </li>
-        <li><a href="<?=$this->url('kabinet_data',["action"=>"password"])?>">Сменить пароль</a> </li>
-    </ul>
-    
-    
-    
-    </div>
-
+<ul class="nav nav-tabs mb-3" id="KabinetTab" role="tablist">
+<?php
+    $data=[];
+  foreach ($this->config as $k=>$tab){
+      if (!isset($tab["route"]["options"]) || !is_array($tab["route"]["options"])){
+          $tab["route"]["options"]=[];
+      }
+    $data[]="<div class=\"tab-pane fade px-3\" id=\"tab{$k}\" role=\"tabpanel\"><div class=\"text-center py-5\"><img src=\"/img/ajax-loader.gif\" alt=\"\"/></div></div>";
+?>
+    <li class="nav-item">
+        <a class="nav-link" href="#tab<?=$k?>" data-tab="#tab<?=$k?>" data-toggle="tab" role="tab" aria-selected="false" data-href="<?=$this->url($tab["route"]["name"],$tab["route"]["options"])?>"><?=$tab["name"]?></a>
+    </li>
+<?php
+  }
+?>
+</ul>
+<div class="tab-content">
+<?=implode("\n",$data)?>
+</div>
 <?php $this->inlineScript()->captureStart(); ?>
-$("#kabinetabs").tabs();
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+ e.preventDefault();
+var link= $(e.target), loadurl = link.data('href'), targ = link.data('tab');
+$(targ).html('<div class="text-center py-5"><img src="/img/ajax-loader.gif" alt=""/></div>');
+    $.get(loadurl, function(data) {
+        $(targ).html(data);
+    });
+});
+$('#KabinetTab li:first-child a').tab('show');
 <?php $this->inlineScript()->captureEnd(); ?>
 

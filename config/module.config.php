@@ -88,31 +88,6 @@ return [
                 ],
             ],
             
-            /* 
-            'set-password' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route'    => '/set-password',
-                    'defaults' => [
-                        'controller' => Controller\UserController::class,
-                        'action'     => 'setPassword',
-                    ],
-                ],
-            ],
-            'users' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/users[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\UserController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],*/
         ],
     ],
     'controllers' => [
@@ -140,6 +115,55 @@ return [
         /*раздел регистрированного посетителя*/
         "forma_profile_password"=>__DIR__."/forma.profile_password.config.php",
         "forma_profile"=>__DIR__."/forma.profile.config.php",
+        
+        /*конфиг вкладок регистрированного*/
+        "tabs"=>[
+            [
+                "name"=>"Мой профиль",
+                "route" => [
+                    "name"=>"kabinet_data",
+                    "options"=>[
+                        "action"=>"profile"
+                    ]
+                ],
+            ],
+            [
+                "name"=>"Сменить пароль",
+                "route" => [
+                    "name"=>"kabinet_data",
+                    "options"=>[
+                        "action"=>"password"
+                    ]
+                ],
+            ],
+        ],
+        /*конфиг вкладок аутенификации*/
+        "tabs_login"=>[
+            [
+                "name"=>"Вход",
+                "route" => [
+                    "name"=>"login",
+                    "options"=>[
+                    ]
+                ],
+            ],
+            [
+                "name"=>"Регистрация",
+                "route" => [
+                    "name"=>"registration",
+                    "options"=>[
+                    ]
+                ],
+            ],
+            [
+                "name"=>"Вспомнить пароль",
+                "route" => [
+                    "name"=>"reset-password",
+                    "options"=>[
+                    ]
+                ],
+            ],
+        ],
     ],
     /*дополнение новым статусом статичные страницы*/
     "statpage"=>[
@@ -154,15 +178,16 @@ return [
         ],
     ],
 
-//локали сайта - перезаписываются в глобальном конфиге
-  "locale_default"=>"ru_RU",
-  "locale_enable_list"=>["ru_RU"],
+    //локали сайта - перезаписываются в глобальном конфиге
+    "locale_default"=>"ru_RU",
+    "locale_enable_list"=>["ru_RU"],
 
-
-  //адреса получателей формы обратной связи по умолчанию
-  //переопределите этот параметр в global.php, он заменит текущий
-  "admin_emails"=>["sxq@yandex.ru"],
-  //обратный адрес
-  "email_robot"=>"robot@".trim($_SERVER["SERVER_NAME"],"w."),
+    /*адреса получателей формы обратной связи по умолчанию
+    *переопределите этот параметр в global.php, он заменит текущий
+    */
+    "admin_emails"=>["sxq@yandex.ru"],
+    /*обратный адрес
+    */
+    "email_robot"=>"robot@".trim($_SERVER["SERVER_NAME"],"w."),
 
 ];

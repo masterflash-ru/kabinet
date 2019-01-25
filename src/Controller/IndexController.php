@@ -8,16 +8,16 @@ class IndexController extends AbstractActionController
 {
     
     /**
-     * User manager.
+     * config kabinet
      */
-    protected $userManager;
+    protected $config;
     
     /**
      * Constructor. 
      */
-    public function __construct($userManager)
+    public function __construct($config)
     {
-        $this->userManager = $userManager;
+        $this->config = $config;
     }
     
     /**
@@ -25,23 +25,16 @@ class IndexController extends AbstractActionController
      */
     public function indexAction() 
     {
-        $view=new ViewModel;
+        
         if (!$this->user()->identity()){
-            /*выводим шаблон аутенификации, мы не вошли*/
-            $view->setTemplate("mf/kabinet/index/login");
+            $view=new ViewModel(["config"=>$this->config["tabs_login"]]);
+            
+        } else {
+            $view=new ViewModel(["config"=>$this->config["tabs"]]);
         }
 
         return $view;
     } 
-    /**
-     * вывод под страницы с профилем
-     */
-    public function profileAction() 
-    {
-
-        return new ViewModel();
-    } 
-
 
 }
 
