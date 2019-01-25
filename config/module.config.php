@@ -126,7 +126,7 @@ return [
         ],
         /*конфиг вкладок регистрированного*/
         "tabs"=>[
-            [
+            "profile"=>[
                 "name"=>"Мой профиль",
                 "route" => [
                     "name"=>"kabinet_data",
@@ -135,7 +135,7 @@ return [
                     ]
                 ],
             ],
-            [
+            "reset_password"=>[
                 "name"=>"Сменить пароль",
                 "route" => [
                     "name"=>"kabinet_data",
@@ -147,7 +147,7 @@ return [
         ],
         /*конфиг вкладок аутенификации*/
         "tabs_login"=>[
-            [
+            "login"=>[
                 "name"=>"Вход",
                 "route" => [
                     "name"=>"login",
@@ -155,7 +155,7 @@ return [
                     ]
                 ],
             ],
-            [
+            "registration"=>[
                 "name"=>"Регистрация",
                 "route" => [
                     "name"=>"registration",
@@ -163,7 +163,7 @@ return [
                     ]
                 ],
             ],
-            [
+            "reset_password"=>[
                 "name"=>"Вспомнить пароль",
                 "route" => [
                     "name"=>"reset-password",
