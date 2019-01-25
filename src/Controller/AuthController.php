@@ -53,13 +53,6 @@ class AuthController extends AbstractActionController
         $locale=$this->params('locale',$this->locale_default);
         $this->translator->setLocale(Locale::getPrimaryLanguage($locale));
         
-        /*проверим авторизован ли юзер?
-        *вариант когда аутентифицированный опять заходит на форму входа
-        */
-        if ($this->user()->identity()){
-            //да, переходим на страницу после авторизации, из конфига
-            //$this->redirect()->toRoute("kabinet");
-        }
         
         $prg = $this->prg();
         if ($prg instanceof Response) {
@@ -68,6 +61,7 @@ class AuthController extends AbstractActionController
         }
 
         $view=new ViewModel(["routeNameAfterLogin"=>$this->config["routeNameAfterLogin"]]);
+        $view->setTemplate($this->config["tpl"]["login"]);
         /*если у нас AJAX запрос, отключим вывод макета*/
         $view->setTerminal($this->getRequest()->isXmlHttpRequest());
 

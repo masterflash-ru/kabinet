@@ -32,7 +32,7 @@ class IndexController extends AbstractActionController
         } else {
             $view=new ViewModel(["config"=>$this->config["tabs"]]);
         }
-
+        $view->setTemplate($this->config["tpl"]["index"]);
         return $view;
     } 
 

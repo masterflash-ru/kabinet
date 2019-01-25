@@ -61,6 +61,7 @@ class UserController extends AbstractActionController
         }
 
         $view=new ViewModel();
+        $view->setTemplate($this->config["tpl"]["profile"]);
         $alertMessage=null;
         $alert_type="success";
         /*если у нас AJAX запрос, отключим вывод макета*/
@@ -119,6 +120,7 @@ class UserController extends AbstractActionController
         }
 
         $view=new ViewModel();
+        $view->setTemplate($this->config["tpl"]["password"]);
         $alertMessage=null;
         $alert_type="success";
         /*если у нас AJAX запрос, отключим вывод макета*/

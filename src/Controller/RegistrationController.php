@@ -68,6 +68,7 @@ class RegistrationController extends AbstractActionController
         }
 
         $view=new ViewModel(["routeNameAfterLogin"=>$this->config["routeNameAfterLogin"]]);
+        $view->setTemplate($this->config["tpl"]["registration"]);
         /*если у нас AJAX запрос, отключим вывод макета*/
         $view->setTerminal($this->getRequest()->isXmlHttpRequest());
 

@@ -63,6 +63,7 @@ class ResetPasswordController extends AbstractActionController
         }
 
         $view=new ViewModel();
+        $view->setTemplate($this->config["tpl"]["reset_password"]);
         $alertMessage=null;
         $alert_type="success";
         /*если у нас AJAX запрос, отключим вывод макета*/

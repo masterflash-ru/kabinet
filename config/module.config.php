@@ -115,7 +115,15 @@ return [
         /*раздел регистрированного посетителя*/
         "forma_profile_password"=>__DIR__."/forma.profile_password.config.php",
         "forma_profile"=>__DIR__."/forma.profile.config.php",
-        
+        /*шаблоны вывода*/
+        "tpl"=>[
+            "login"=>"mf/kabinet/auth/login",
+            "index"=>"mf/kabinet/index/index",
+            "registration"=>"mf/kabinet/registration/index",
+            "reset_password"=>"mf/kabinet/reset-password/index",
+            "password"=>"mf/kabinet/user/password",
+            "profile"=>"mf/kabinet/user/profile",
+        ],
         /*конфиг вкладок регистрированного*/
         "tabs"=>[
             [
