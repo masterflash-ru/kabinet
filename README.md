@@ -12,7 +12,7 @@
 ```php
     "kabinet" => [
         "tpl"=>[
-            "index"=>"mf/kabinet/index/index_jqueryui",
+            "index"=>"mf/kabinet/index/index-jqueryui",
         ],
     ],
 
