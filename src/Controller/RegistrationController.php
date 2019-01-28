@@ -100,7 +100,7 @@ class RegistrationController extends AbstractActionController
                 $mess=$this->Statpage("USER_REGISTRATION",["pageType"=>3,"errMode"=>"exception"]);
                 
                 /*адрес для подтверждения регистрации*/
-                $confirm = $this->ServerDefaultUri.$this->url()->fromRoute("confirm",["confirm"=>$user->getConfirm_hash()]);
+                $confirm = $this->url()->fromRoute("confirm",["confirm"=>$user->getConfirm_hash()],["force_canonical"=>true]);
                 $mess=str_replace("{CONFIRM}",$confirm,$mess);
                 
 
