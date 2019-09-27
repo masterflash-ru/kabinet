@@ -69,7 +69,12 @@ if (<?=(int)$this->user()->getUserId()?>>0){
 }
     
 $("#lostpassword").on("click",function(e){
-    $('#KabinetTab li:nth-child(3) a').tab('show');
+    if ($.fn.tab) {
+        $('#KabinetTab li:nth-child(3) a').tab('show');
+    }
+    if ($.fn.tabs) {
+        $("#kabinetabs").tabs("option","active",2);
+    }
 });
 $('[type=password]').hidePassword(true);
 </script>
