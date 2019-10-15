@@ -4,6 +4,12 @@ namespace Mf\Kabinet;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
+if (empty($_SERVER["SERVER_NAME"])){
+    //скорей всего запустили из консоли
+    $_SERVER["SERVER_NAME"]="localhost";
+    $_SERVER["REQUEST_SCHEME"]="http";
+}
+
 return [
     'router' => [
         'routes' => [
