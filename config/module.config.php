@@ -112,6 +112,10 @@ return [
         ],
     ],
     "kabinet" => [
+        "config"=>[
+            "database"  =>  "DefaultSystemDb",
+            "cache"     =>  "DefaultSystemCache",
+        ],
         "routeNameAfterLogin"=>"kabinet",   //имя маршрута куда переходим после авторизации
         
         /*конфигурация форм*/
