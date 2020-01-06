@@ -2,12 +2,12 @@
 /**
  * конфигурация формы 
  * для изменения создайте новую конфигурацию по аналогии см. https://docs.zendframework.com/zend-form/quick-start/#creation-via-factory
- * создается при помощи фабрики Zend
+ * создается при помощи фабрики Laminas
  */
 
 namespace Mf\Kabinet;
-use Zend\Form\Element;
-use Zend\Validator\Hostname;
+use Laminas\Form\Element;
+use Laminas\Validator\Hostname;
 
 
 return [

@@ -2,13 +2,13 @@
 
 namespace Mf\Kabinet\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Authentication\Result;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Authentication\Result;
 use Locale;
-use Zend\Form\Factory;
+use Laminas\Form\Factory;
 use Exception;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 /**
  * контроллер выводящий форму аутентификация и собственно сама аутентификация при помощи сервиса

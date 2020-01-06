@@ -4,8 +4,8 @@
 
 namespace Mf\Kabinet;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class Module
 {

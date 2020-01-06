@@ -1,19 +1,19 @@
 <?php
 namespace Mf\Kabinet\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use ADO\Service\RecordSet;
 use ADO\Service\Command;
 use Mf\Users\Entity\Users;
-use Zend\Mail;
-use Zend\Mime\Message as MimeMessage;
-use Zend\Mime\Mime;
-use Zend\Mime\Part as MimePart;
+use Laminas\Mail;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
 use Locale;
-use Zend\Form\Factory;
+use Laminas\Form\Factory;
 use Exception;
-use Zend\Validator\AbstractValidator;
+use Laminas\Validator\AbstractValidator;
 
 
 

@@ -2,10 +2,10 @@
 namespace Mf\Kabinet\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Mf\Users\Service\UserManager;
 
-use Zend\Validator\Translator\TranslatorInterface;
+use Laminas\Validator\Translator\TranslatorInterface;
 
 class ResetPasswordControllerFactory implements FactoryInterface
 {

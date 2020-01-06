@@ -3,9 +3,9 @@ namespace Mf\Kabinet\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Mf\Users\Service\AuthManager;
-use Zend\Validator\Translator\TranslatorInterface;
+use Laminas\Validator\Translator\TranslatorInterface;
 
 /**
  * This is the factory for AuthController. Its purpose is to instantiate the controller
